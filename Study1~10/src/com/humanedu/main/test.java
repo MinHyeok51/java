@@ -33,7 +33,7 @@ public class test {
 			}
 			System.out.println();
 		}
-
+		//깃 연동 테스트 여기 수정됨.
 	}
 
 }
