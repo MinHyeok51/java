@@ -36,6 +36,7 @@ class Driver {
 		if((vehicle instanceof Taxi)) {
 			Taxi tempTaxi = (Taxi)vehicle;
 			tempTaxi.startMeter();
+//			((Taxi) vehicle).startMeter();
 		} if(vehicle instanceof Bus) {
 			Bus tempBus = (Bus)vehicle;
 			tempBus.tagCard();

@@ -20,12 +20,9 @@ public class test {
 		 * 		 *******
 		 * 		
 		 */
-		int i;
-		int j;
-		int num=7;
-		for(i=0; i<num; i++) {
+		for(int i=0; i<7; i++) {
 			
-			for(j=1; j<num-i; j++) {
+			for(int j=1; j<7-i; j++) {
 				System.out.print(" ");
 			}
 			for(int k=0; k<i*2+1; k++) {
