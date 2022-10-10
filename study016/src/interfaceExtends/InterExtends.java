@@ -10,6 +10,7 @@ public class InterExtends {
 		System.out.println("1--------------------------");
 		Cls2 c2 = new Cls2();
 		c2.funcA();
+		c2.funcB();
 		c2.funcC();
 		System.out.println("2--------------------------");
 		itfA i1 = new Cls1();
@@ -23,6 +24,13 @@ public class InterExtends {
 		i4.funcB();
 		i4 = new Cls2();
 		i4.funcB();
+		System.out.println("4--------------------------");
+		itfC i5 = new Cls2();
+		i5.funcA();
+		i5.funcB();	
+		i5.funcC();
+		
+		
 		
 	}
 
@@ -57,7 +65,7 @@ class Cls2 implements itfC{
 	@Override
 	public void funcB() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("funcB in Cls2");	
 	}
 	@Override
 	public void funcC() {
