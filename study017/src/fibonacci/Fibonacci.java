@@ -67,7 +67,7 @@ public class Fibonacci {
 		
 		for(int i=4; i<=100; i++) {
 			for(int j=2; j<=100; j++) {
-//				if()
+//				if()	뭐야 깃 뭔가 이상해 지금 불안한데?
 			}
 		}
 	}
