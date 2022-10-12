@@ -50,25 +50,5 @@ public class Fibonacci {
 		
 		//----------------------------------------
 		
-//		int total=0;
-//		int i =1;
-//		while(i<=100) {
-//			total+=i;
-//			System.out.println(total);
-//			i++;
-//		}
-		
-//		for(int i=0; i<10; i++) {
-//				if(i==5) continue;
-//				System.out.println(i);
-//		}
-//		
-		int p;
-		
-		for(int i=4; i<=100; i++) {
-			for(int j=2; j<=100; j++) {
-//				if()	뭐야 깃 뭔가 이상해 지금 불안한데? 다시 푸시해보자..
-			}
-		}
 	}
 }
