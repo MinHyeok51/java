@@ -6,18 +6,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu {
+//Teacher
+public class MenuT {
 	
 	private ArrayList<String> alMenu;
 	private ArrayList<Integer> alPrice;
 	
-	public Menu() {
+	public MenuT() {
 		//기본생성자를 만들어서 ArrayList 기능 사용
 		this.alMenu = new ArrayList();
 		this.alPrice = new ArrayList();
 		
 		
-		String filename = "d:\\menu.txt";
+		String filename = "c:\\menu.txt";
 		//d드라이브에 menu.txt파일 생성하고 데이터 저장
 		File file = new File(filename);
 		if(file.exists()){
@@ -58,8 +59,9 @@ public class Menu {
 		return this.alMenu.size();
 	}
 	public void display() {
+		System.out.println("--------Menu List-------");
 		for(int i =0; i<this.getSize(); i++) {
-			System.out.print(i+"번:"+this.getName(i)+", ");
+			System.out.print(i+"."+this.getName(i)+", ");
 			System.out.println(this.getPrice(i));
 		}
 	}
