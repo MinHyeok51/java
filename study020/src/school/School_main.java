@@ -20,6 +20,10 @@ public class School_main {
 		//메인코드 최소화하기. 메소드화 
 		Student st = new Student();
 		
-		st.inputData();
+//		st.inputData();
+//		----------------------------------선생님꺼---------------------------------
+		st.getScore();
+		st.showScore();
+		st.showStatistic();
 	}
 }
