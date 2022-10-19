@@ -24,11 +24,11 @@ public class CafeT_main {
 		Scanner s =new Scanner(System.in);	//문자열받는 스캐너
 		Scanner s1 =new Scanner(System.in);	//정수받는 스캐너
 		
-		System.out.println("작업코드를 입력하시오(m:메뉴보기,o:주문하기,s:매출보기,\"\":종료) ");
+		System.out.println("작업코드를 입력하시오(m:메뉴관리,o:주문하기,s:매출보기,\"\":종료) ");
 		String jobcode = s.nextLine();
 		while(!jobcode.equals("")) {
 			if(jobcode.equals("m")) {
-				menu.display();
+				menu.control();
 			}else if(jobcode.equals("o")) {
 				menu.display();
 				Order order = new Order();
@@ -39,7 +39,6 @@ public class CafeT_main {
 					int qty=s1.nextInt();
 					int sum=qty*menu.getPrice(Integer.parseInt(menuNum));
 					String name=menu.getName(Integer.parseInt(menuNum));
-					
 					order.addOrder(name, qty, sum);
 					menu.display();
 					System.out.println("메뉴번호를 입력하시오.(''이면 종료):");
@@ -54,7 +53,7 @@ public class CafeT_main {
 			}else if(jobcode.equals("s")) {
 				sell.display();
 			}
-			System.out.println("작업코드를 입력하시오(m:메뉴보기,o:주문하기,\"\":종료)");
+			System.out.println("작업코드를 입력하시오(m:메뉴관리,o:주문하기,s:매출보기,\"\":종료)");
 			jobcode=s.nextLine();	//이것이 없을경우 위에서 m이들어오면 if문 실행하고 마지막부분도달했을때 jobcode에 m이 들어있어서 다시 if문 반복실행됨.
 		}
 		System.out.println("프로그램 종료");

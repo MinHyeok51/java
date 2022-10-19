@@ -1,15 +1,9 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Cafe_main {
 
 	public static void main(String[] args) {
-		Scanner s = new Scanner(System.in);
-		Scanner s2 = new Scanner(System.in);
-
-		Menu menu = new Menu();
-		Order order = new Order();
-
+		
 		//작업코드를 읽는다
 		//작업코드가 ""이 아닌 동안(while)
 		// if 작업코드가 "m"이면 menu.display();
@@ -18,43 +12,52 @@ public class Cafe_main {
 		//	메뉴번호가 ""이 아닌 동안(while)
 		//		수량을 입력받는다
 		//		총액 자동계산 -> order.alSum에 총액입력 ->저장
-		//		메뉴명을 찾은후 order.alName에 메뉴명입력
+		//		order.alName 에 메뉴번호 입력받아서 메뉴명을 찾은후 order.alName에 메뉴명입력
 		//		order.alQty에 수량입력
 		//		order.alSum에 총액입력
 		//		새 메뉴번호를 입력받는다.
 		//	입력된 주문목록을 표시
-
-		System.out.println("메뉴보기=m, 주문하기=o, 끄기=enter");
-		String name=s.nextLine();
-		int total=0;
-		while(!name.equals("")) {
-			if(name.equals("m")) {
+		Menu menu = new Menu();
+		Sales sell = new Sales();
+		menu.display();
+		Scanner s =new Scanner(System.in);	//문자열받는 스캐너
+		Scanner s1 =new Scanner(System.in);	//정수받는 스캐너
+		
+		System.out.println("작업코드를 입력하시오(m:메뉴관리,o:주문하기,s:매출보기,\"\":종료) ");
+		String jobcode = s.nextLine();
+		while(!jobcode.equals("")) {
+			if(jobcode.equals("m")) {
+				menu.control();
+			}else if(jobcode.equals("o")) {
 				menu.display();
-				System.out.println("주문하시려면 o 를 누르세요");
-				name=s.nextLine();
-			}else if(name.equals("o")) {
-				System.out.println("메뉴번호를 입력하세요. -----종료하려면 11입력");
-				menu.display();
-				int num = s2.nextInt();
-				
-				if(num==11) {
-					break;
-				}else {
-					while(num!=11) {
-						String menuName = menu.getName(num);
-						System.out.println("주문 수량을 입력하시오");
-						int num1 = s2.nextInt();
-						int sum = menu.getPrice(num)*num1;
-						total +=menu.getPrice(num)*num1;
-						order.addOrder(menuName, num1, sum);
-						System.out.println("메뉴번호를 입력하세요.---------전단계로 가려면 11입력");
-						System.out.println("");
-						num= s2.nextInt();
-					}
+				Order order = new Order();
+				System.out.println("메뉴번호를 입력하시오.(''이면 종료):");
+				String menuNum = s.nextLine();
+				while(!menuNum.equals("")) {
+					System.out.println("주문수량(잔)을 입력하시오:");
+					int qty=s1.nextInt();
+					int sum=qty*menu.getPrice(Integer.parseInt(menuNum));
+					String name=menu.getName(Integer.parseInt(menuNum));
+					order.addOrder(name, qty, sum);
+					menu.display();
+					System.out.println("메뉴번호를 입력하시오.(''이면 종료):");
+					menuNum = s.nextLine();
 				}
+				order.display();
+				System.out.println("적립할 모바일 번호를 입력하시오:");
+				String mobile=s.nextLine();
+				for(int i=0; i<order.orderSize(); i++) {
+					sell.add(mobile, order.getName(i), order.getQty(i), order.getSum(i));
+				}
+			}else if(jobcode.equals("s")) {
+				sell.display();
 			}
+			System.out.println("작업코드를 입력하시오(m:메뉴관리,o:주문하기,s:매출보기,\"\":종료)");
+			jobcode=s.nextLine();	//이것이 없을경우 위에서 m이들어오면 if문 실행하고 마지막부분도달했을때 jobcode에 m이 들어있어서 다시 if문 반복실행됨.
 		}
-		order.display();
-		System.out.println("총 합: "+total);
+		System.out.println("프로그램 종료");
+		s.close(); // 이거 없으면 스캐너 변수에 노란줄 쳐짐
+		s1.close();
 	}
+
 }

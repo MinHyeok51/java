@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,7 +20,7 @@ public class MenuT {
 		this.alPrice = new ArrayList();
 		
 		
-		String filename = "c:\\menu.txt";
+		String filename = "d:\\menu.txt";
 		//d드라이브에 menu.txt파일 생성하고 데이터 저장
 		File file = new File(filename);
 		if(file.exists()){
@@ -82,4 +84,78 @@ public class MenuT {
 //		s.close();
 //		s1.close();
 //	}
+	//좀 이상함
+	private void menuSave() {
+		String filename = "d:\\menu.txt";
+		File file = new File(filename);
+		BufferedWriter outFile;
+		try {
+			outFile = new BufferedWriter(new FileWriter(file));
+			for(int i=0; i<this.alMenu.size(); i++) {
+				outFile.write(this.alMenu.get(0)+","+this.alPrice.get(i)+"\n");
+			}
+			outFile.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void control() {
+		//작업코드를 읽는다.(c:추가, d:삭제, u:수정,r:목록보기)
+		//""이 아닌동안
+		//		r: this.display();
+		//		d: 삭제할 메뉴번호를 입력하시오.
+		//			입력된 메뉴를 삭제(.remove)
+		//		c: 새이름을 입력하시오.
+		//			새 가격을 입력하시오.
+		//		u: 수정할 메뉴번호를 입력하시오.
+		//			새 메뉴명을 입력하시오(같은 메뉴명 입력)
+		//			새 가격을 입력하시오(같은 가격이면 입력)
+		//		작업코드를 읽는다(c:추가, d:삭제, u:수정,r:목록보기, enter:작업종료)
+		Scanner s = new Scanner(System.in);
+		Scanner s2 = new Scanner(System.in);
+		System.out.println("c:추가, d:삭제, u:수정,r:목록보기, enter:작업종료");
+		String input = s.nextLine();
+		while(!input.equals("")) {
+			if(input.equals("r")) {
+				this.display();
+				System.out.println("c:추가, d:삭제, u:수정,r:목록보기, enter:작업종료");
+				input = s.nextLine();
+			}else if(input.equals("d")) {
+				this.display();
+				System.out.println("삭제할 메뉴번호를 입력하시오.");
+				int num = s2.nextInt();
+				alMenu.remove(num);
+				this.display();
+				System.out.println("c:추가, d:삭제, u:수정,r:목록보기, enter:작업종료");
+				input = s.nextLine();
+			}else if(input.equals("c")) {
+				System.out.println("추가할 메뉴이름을 입력하시오");
+				input = s.nextLine();
+				alMenu.add(input);
+				System.out.println("가격을 입력하시오.");
+				input = s.nextLine();
+				alPrice.add(Integer.parseInt(input));
+				this.control();
+			}else if(input.equals("u")) {
+				System.out.println("수정할 메뉴 번호를 입력하시오.");
+				int num = s2.nextInt();
+				System.out.println( getName(num));
+				System.out.println("수정할 이름");
+				input=s.nextLine();
+				alMenu.set(num, input);
+				System.out.println("수정할 가격");
+				System.out.println(getPrice(num));
+				int num2=s2.nextInt();
+				alPrice.set(num, num2);
+				this.display();
+				System.out.println("c:추가, d:삭제, u:수정,r:목록보기, enter:작업종료");
+				input = s.nextLine();
+			}
+			System.out.println("c:추가, d:삭제, u:수정,r:목록보기, enter:작업종료");
+			input = s.nextLine();
+		}
+//		this.menuSave();
+		s.close();
+		s2.close();
+	}
 }
