@@ -21,12 +21,28 @@ public class ConnectMain {
 //			System.out.println(ai.toString());
 //		}
 		
-		List<EmpInfo> empInfoList = myDataDao.selectEmpInfoList();
-		for(int i=0; i<empInfoList.size(); i++) {
-			System.out.println(empInfoList.get(i).toString());
-		}
+//		List<EmpInfo> empInfoList = myDataDao.selectEmpInfoList();
+//		for(int i=0; i<empInfoList.size(); i++) {
+//			System.out.println(empInfoList.get(i).toString());
+//		}
 		
 		
+//		List<Professor> proflist = myDataDao.selectProfessorListByDeptno(203);
+//		for(int i=0; i<proflist.size(); i++) {
+//			System.out.println(proflist.get(i).toString());
+//		}
+		
+		HobbyItem hi1 = new HobbyItem();
+		hi1.id =44;
+		hi1.no =2;
+		hi1.hobby = "헬스";
+		hi1.prefer = 10;
+		myDataDao.updateHobbyList(hi1);
+		
+		HobbyItem hi2 = new HobbyItem();
+		hi2.id = 45;
+		hi2.no = 3;
+		myDataDao.deleteHobbyList(hi2);
 		
 		
 		//클래스
