@@ -1,4 +1,4 @@
-//dto
+//dto data transfer object
 public class JsonUser {
     public int userId;
     public String firstName;
