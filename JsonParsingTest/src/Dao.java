@@ -204,6 +204,55 @@ public class Dao {
 			disConnect();
 		}
 	}
+	
+
+	public void insertMovieInfo(TmdbData tmdb) {
+	
+		String sqlQuery = "INSERT INTO movie_info VALUES( ?, ?)";
+		try {
+			connect();
+			psmt = conn.prepareStatement(sqlQuery);
+		
+			psmt.setString(1, tmdb.title);  
+			psmt.setString(2, tmdb.poster_path);
+
+			int resultCnt = psmt.executeUpdate();
+			if(resultCnt > 0) {
+				System.out.println("Insert 성공");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+	}
+	public List<TmdbData> selectTmdbStatus() {
+		String sqlQuery = "select * from movie_info";
+		List<TmdbData> tmdbList = null;
+		try {
+			connect();
+			psmt = conn.prepareStatement(sqlQuery);
+			rs = psmt.executeQuery();
+			
+			tmdbList = new ArrayList<TmdbData>();
+			while (rs.next()) {
+				TmdbData tmdb = new TmdbData();
+				tmdb.title = rs.getString("title");
+				tmdb.poster_path = rs.getString("poster_path");
+				
+				tmdbList.add(tmdb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		return tmdbList;
+	}
 }
 
 /*	
